@@ -5,6 +5,7 @@ public class Danmaku : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float speed = 1;
     [SerializeField] private int bulletdmg;
+    [SerializeField] private GameObject HitFX;
     void Start()
     {
         rb.linearVelocity = Vector2.up * speed;
@@ -16,12 +17,18 @@ public class Danmaku : MonoBehaviour
         if(enemy != null)
         {
             enemy.LoseLife(bulletdmg);
+
             Destroy(gameObject);
-        }
-        WALLOFDEATH deathbarrier = collision.gameObject.GetComponent<WALLOFDEATH>();
-        {
-            Destroy(gameObject);
+
+            GameObject HitFXRepeat = Instantiate(HitFX,transform.position,Quaternion.identity);
+
+            Destroy (HitFXRepeat,1);
         }  
+    }
+
+    public void SetDamage(int newDamage)
+    {
+        bulletdmg = newDamage;
     }
 
 }

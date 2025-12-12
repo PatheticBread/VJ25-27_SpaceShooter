@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 public class Player : Damageable
 {
     [SerializeField] float speed = 1;
-    [SerializeField] GameObject Bullet;
+    [SerializeField] Danmaku bullet;
     [SerializeField] float ASPD = 1;
+    [SerializeField] int P1Dmg = 1;
      
     Vector2 destination;
     void Start()
@@ -26,9 +27,20 @@ public class Player : Damageable
 
     void Danmaku()
     {
-        Instantiate(Bullet,transform.position, Quaternion.identity);
-        
+        Danmaku newbullet = Instantiate(bullet,transform.position, Quaternion.identity);
+        newbullet.SetDamage(P1Dmg);
+    }
 
+    public void Increment(StatType stat)
+    {
+        if(stat == StatType.Damage)
+        {
+            P1Dmg++;
+        }
+        if(stat == StatType.ASPD)
+        {
+            ASPD = ASPD - 0.2f;
+        }
     }
 
     void Shmoving()

@@ -1,17 +1,22 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class Enemy : Damageable
+public class EnemyRandL : Damageable
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float speed = 1;
     [SerializeField] private int collisionDamage = 1;
-    [SerializeField] private Vector2 direction = Vector2.down;
+    [SerializeField] private bool IsLeft = true;
     
     void Start()
     {
-        rb.linearVelocity = direction * speed;
-        new Rotate(180);
+        if(IsLeft == true)
+        {
+            rb.linearVelocity = Vector2.left * speed;
+        }
+        else
+        {
+            rb.linearVelocity = Vector2.right * speed;
+        }
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -20,11 +25,6 @@ public class Enemy : Damageable
         if(player != null)
         {
             player.LoseLife(collisionDamage);
-            LoseLife(1);
-        }
-        else if(collision.gameObject.CompareTag("Bullet") == false)
-        {
-            Perish();
         }
     }
 }

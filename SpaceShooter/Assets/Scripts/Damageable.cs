@@ -13,8 +13,17 @@ public class Damageable : MonoBehaviour
 
         if(HP<=0)
         {
-            Instantiate(explosion,transform.position,Quaternion.identity);
-            Destroy(gameObject); // DEATH
+            Perish();
         }
+    }
+    public void Perish()
+    {
+        Destroy(gameObject); // DEATH
+            
+            if(explosion !=null)
+            {
+                GameObject explosionInstance = Instantiate(explosion,transform.position,Quaternion.identity);
+                Destroy(explosionInstance, 1);
+            }
     }
 }
