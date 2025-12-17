@@ -6,6 +6,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private int totalScore;
     [SerializeField] private TextMeshProUGUI scoreDisplay;
 
+    void Start()
+    {
+        scoreDisplay.text = totalScore.ToString();
+    }
+
     public void AddScore(int scoretoAdd)
     {
         totalScore += scoretoAdd;

@@ -6,6 +6,6 @@ public class ScoreIdentifier : MonoBehaviour
 
     void OnDestroy()
     {
-        GameObject.Find("UIManager").GetComponent<UIManager>().AddScore(score);
+        GameObject.Find("UiMan").GetComponent<UIManager>().AddScore(score); // I'm aware that unity is constantly whining about this, but frankly this is code we did in class and it still works perfectly fine so I'm just gonna let it.
     }
 }

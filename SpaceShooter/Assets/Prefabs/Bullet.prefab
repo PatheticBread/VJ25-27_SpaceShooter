@@ -130,7 +130,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 53973288c69048340a33a25ee61c015a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.032
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   rb: {fileID: -2892548383104558084}
   speed: 8
   bulletdmg: 1
-  HitFX: {fileID: 2518543845671191182, guid: f30b2e3451067524e8abcae9c2e850ec, type: 3}
+  HitFX: {fileID: 8066097258512693755, guid: 1db97d6bc5cf704489e585243d5e1cca, type: 3}
 --- !u!50 &-2892548383104558084
 Rigidbody2D:
   serializedVersion: 5
