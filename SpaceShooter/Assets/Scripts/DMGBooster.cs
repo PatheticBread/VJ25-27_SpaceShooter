@@ -18,5 +18,6 @@ public class DMGBooster : MonoBehaviour
 public enum StatType
 {
     Damage,
-    ASPD
+    HP,
+    BombCD
 }

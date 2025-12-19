@@ -1,13 +1,18 @@
-using Unity.VisualScripting;
+
 using UnityEngine;
-using UnityEngine.InputSystem;
+using System.Collections;
+using TMPro;
 
 public class Player : Damageable
 {
     [SerializeField] float speed = 1;
     [SerializeField] Danmaku bullet;
     [SerializeField] float ASPD = 1;
-    [SerializeField] int P1Dmg = 1;
+    [SerializeField] float P1Dmg = 1;
+    [SerializeField] int BombCooldown = 20;
+    [SerializeField] GameObject TheBomb;
+    [SerializeField] TMPro.TextMeshProUGUI BOMBCOOLD;
+    private bool CanBomb = true;
      
     Vector2 destination;
     void Start()
@@ -17,6 +22,7 @@ public class Player : Damageable
     void Update()
     {
        Shmoving();
+       Bomb();
     }
 
     void FixedUpdate()
@@ -35,11 +41,17 @@ public class Player : Damageable
     {
         if(stat == StatType.Damage)
         {
-            P1Dmg++;
+            P1Dmg += 0.5f;
         }
-        if(stat == StatType.ASPD)
+        if(stat == StatType.HP)
         {
-            ASPD = ASPD - 0.2f;
+            HealthGain();
+        }
+        if(stat == StatType.BombCD)
+        {
+            BombCooldown -= 2 ;
+            if(BombCooldown < 2)
+             BombCooldown = 2;
         }
     }
 
@@ -80,5 +92,28 @@ public class Player : Damageable
         {
             destination = transform.position;
         }
+    }
+
+    void Bomb()
+    {
+        if( CanBomb && Input.GetMouseButtonDown(0) || CanBomb && Input.touchSupported && Input.touchCount > 0)
+        {
+            GameObject BombInstance = Instantiate(TheBomb,transform.position,Quaternion.identity);
+            Destroy(BombInstance,1);
+            print("Bombed!");
+            StartCoroutine("BombCycle");
+        }
+
+    }
+    IEnumerator BombCycle()
+    {
+        CanBomb = false;
+
+        for(int i = BombCooldown; i >= 0; i--)
+        {
+            BOMBCOOLD.text = "Bomb? Cooldown = " + i.ToString();
+            yield return new WaitForSeconds(1f);
+        }
+        CanBomb = true;
     }
 }

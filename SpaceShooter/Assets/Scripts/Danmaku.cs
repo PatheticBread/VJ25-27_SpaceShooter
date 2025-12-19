@@ -4,11 +4,13 @@ public class Danmaku : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float speed = 1;
-    [SerializeField] private int bulletdmg;
+    [SerializeField] private float bulletdmg;
     [SerializeField] private GameObject HitFX;
+    [SerializeField] private float Rotation;
 
     void Start()
     {
+        rb.transform.Rotate(0f,0f,Rotation);
         rb.linearVelocity = Vector2.up * speed;
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -27,7 +29,7 @@ public class Danmaku : MonoBehaviour
         } 
     }
 
-    public void SetDamage(int newDamage)
+    public void SetDamage(float newDamage)
     {
         bulletdmg = newDamage;
     }

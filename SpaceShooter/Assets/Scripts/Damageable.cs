@@ -1,15 +1,18 @@
 using UnityEngine;
+using TMPro;
 
 public class Damageable : MonoBehaviour
 {
-    [SerializeField] private int HP = 3;
+    [SerializeField] private float HP = 3;
      [SerializeField] private GameObject explosion;
+
+     [SerializeField] private int DeathCount;
+     [SerializeField] TMPro.TextMeshProUGUI HpDisp;
     
-    public void LoseLife(int DMGMULT)
+    public void LoseLife(float DMGMULT)
     {
         HP -= DMGMULT;
-
-        print(gameObject.name + "Owwie T-T - " + DMGMULT + " DMG Taken! = "+ HP);
+        HealthDisplay();
 
         if(HP<=0)
         {
@@ -26,4 +29,16 @@ public class Damageable : MonoBehaviour
                 Destroy(explosionInstance, 1);
             }
     }
+    public void HealthGain()
+    {
+        if(HP<5)
+         HP += 1;
+        HealthDisplay();
+    }
+    public void HealthDisplay()
+    {
+        if(HpDisp != null)
+          HpDisp.text = "Lives = " + HP.ToString();
+    }
+
 }
