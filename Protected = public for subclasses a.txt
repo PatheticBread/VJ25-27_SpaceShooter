@@ -1,0 +1,16 @@
+Protected = public for subclasses and self
+protected virtual void Method() = allows for subclasses to modify the method
+protected override void Method() = alterations to method for the subclass
+(followed by base.originalmethod() if you wish to addon and not replace)
+don't forget to make the class itself public btw :P
+_variables make life a lil easier as it can distinguish variables specific to the script
+
+you can setup sliders with serializefield using [SerializeField, Range(min, max)]
+
+making methods for getVariable() (then return it) and setvariable(int* newvariable)
+is a better way to setup replacements and it's how you acess superclass variables in code.
+right click, refractor, encapsulate is a way to do this in a more compact manner.
+
+Polymorphism basically = Serializing a method then using it as a condition
+i.e: Animal animal; if(animal is Cat){ then Cat cat = animal as Cat; cat.CatMethod() ] 
+
