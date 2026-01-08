@@ -12,5 +12,10 @@ is a better way to setup replacements and it's how you acess superclass variable
 right click, refractor, encapsulate is a way to do this in a more compact manner.
 
 Polymorphism basically = Serializing a method then using it as a condition
-i.e: Animal animal; if(animal is Cat){ then Cat cat = animal as Cat; cat.CatMethod() ] 
+i.e: Animal animal; if(animal is Cat){ then Cat cat = animal as Cat; cat.CatMethod() ]
+
+GameObject[] (name) = new GameObject[x] (x = nº of items) to create an array. 
+
+(name)[x] in code to reference array components individually
+i.e: Bullet[1].SetActive = false (references 2nd component in list and renders it innactive) 
 
